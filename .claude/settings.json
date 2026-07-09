@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(php -v)",
+      "Bash(composer -V)",
+      "Bash(mysql --version)",
+      "PowerShell(php -v)",
+      "PowerShell(composer -V)",
+      "Bash(docker --version)",
+      "Bash(docker compose *)"
+    ]
+  }
+}
