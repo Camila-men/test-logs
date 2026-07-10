@@ -8,9 +8,16 @@ FROM dunglas/frankenphp:php8.3-bookworm
 
 RUN install-php-extensions pdo_mysql intl opcache
 
+# unzip нужен Composer'у, чтобы распаковывать скачанные пакеты — в базовом
+# образе frankenphp его нет.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends unzip git \
+    && rm -rf /var/lib/apt/lists/*
+
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
+ENV COMPOSER_ALLOW_SUPERUSER=1
 
 COPY composer.json composer.lock ./
 RUN composer install --no-dev --no-scripts --no-interaction --optimize-autoloader
