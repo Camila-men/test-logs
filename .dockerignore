@@ -1,0 +1,7 @@
+.git
+.claude
+var/
+vendor/
+docker-compose.yml
+docker/php
+docker/nginx
